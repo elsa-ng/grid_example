@@ -1,0 +1,12 @@
+<h3>Nested Object using Cell Renderer</h3>
+<div>
+  <ag-grid-angular style="width: 50%; height: 200px;"
+    class="ag-theme-blue"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [gridOptions]="gridOptions"
+    [enableSorting]="true"
+    [enableFilter]="true"
+    (gridReady)="onGridReady($event)">
+  </ag-grid-angular>
+</div>
