@@ -27,7 +27,6 @@
     "core-js": "2.4.x",
     "rxjs": "5.1.x",
     "zone.js": "0.8.x",
-
     "bootstrap": "3.3.6",
     "codelyzer": "2.1.1",
     "jasmine-core": "2.6.4",
