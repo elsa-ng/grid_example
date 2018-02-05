@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { RedComponentComponent } from '../../shared/cellRenderer/red-component/red-component.component';
 import { ObjectRendererComponent } from '../../shared/cellRenderer/object-renderer/object-renderer.component';
 
-import { GridOptions } from "ag-grid/main";
+import { GridOptions } from 'ag-grid/main';
 
 import { arrayNestedObject } from '../../../src/data/arrayNestedObject';
 
@@ -25,10 +25,10 @@ export class MyGridApplicationComponent {
         };
 
         this.columnDefs = [
-            {headerName: "Key Activities", valueGetter: 'data.code + \" \" + data.name', width: 200},
-            {headerName: "Tags", valueGetter: this.getterFunction, valueFormatter: this.testing},
-            {headerName: "Ministry", valueGetter: 'data.leadSupportingMinistries', /*cellRendererFramework: ObjectRendererComponent*/},
-            {headerName: "Last Update", valueGetter: 'data.lastUpdated + \" by \" + data.lastUpdatedUser', width: 150}
+            {headerName: 'Key Activities', valueGetter: 'data.code + \' \' + data.name', width: 200},
+            {headerName: 'Tags', valueGetter: this.getterFunction, valueFormatter: this.testing},
+            {headerName: 'Ministry', valueGetter: 'data.leadSupportingMinistries', /*cellRendererFramework: ObjectRendererComponent*/},
+            {headerName: 'Last Update', valueGetter: 'data.lastUpdated + \' by \' + data.lastUpdatedUser', width: 150}
         ];  
 
         this.rowData = arrayNestedObject;
