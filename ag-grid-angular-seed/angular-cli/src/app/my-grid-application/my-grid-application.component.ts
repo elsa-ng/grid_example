@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RedComponentComponent } from '../../shared/cellRenderer/red-component/red-component.component';
-import { ObjectRendererComponent } from '../../shared/cellRenderer/object-renderer/object-renderer.component';
+import { MinistryRendererComponent } from '../../shared/cellRenderer/ministry-renderer/ministry-renderer.component';
 
 import { GridOptions } from 'ag-grid/main';
 
@@ -18,18 +18,18 @@ export class MyGridApplicationComponent {
     gridOptions: GridOptions;
     private columnDefs: any[];
     private rowData: any[];
-    
+
     constructor() {
         this.gridOptions = <GridOptions>{
-            rowHeight: 50,
+            rowHeight: 100,
         };
 
         this.columnDefs = [
-            {headerName: 'Key Activities', valueGetter: 'data.code + \' \' + data.name', width: 200},
-            {headerName: 'Tags', valueGetter: this.getterFunction, valueFormatter: this.testing},
-            {headerName: 'Ministry', valueGetter: 'data.leadSupportingMinistries', /*cellRendererFramework: ObjectRendererComponent*/},
-            {headerName: 'Last Update', valueGetter: 'data.lastUpdated + \' by \' + data.lastUpdatedUser', width: 150}
-        ];  
+            {headerName: 'Key Activities', valueGetter: 'data.code + \' \' + data.name', width: 150},
+            {headerName: 'Tags', valueGetter: this.getTag, valueFormatter: this.formatTag, width: 75},
+            {headerName: 'Ministry', valueGetter: this.getMinistry, cellRendererFramework: MinistryRendererComponent},
+            {headerName: 'Last Update', valueGetter: 'data.lastUpdated + \' by \' + data.lastUpdatedUser', width: 100}
+        ];
 
         this.rowData = arrayNestedObject;
     }
@@ -40,12 +40,12 @@ export class MyGridApplicationComponent {
         params.api.sizeColumnsToFit();
     }
 
-    getArrayVal(params){
+    getArrayVal(params) {
         const arr = params.data.tags as Array<string>;
         return arr.join(', ');
     }
 
-    getterFunction(params) {
+    getTag(params) {
         let results = [];
         if (params.data.tags !== null) {
             for (let i = 0; i < params.data.tags.length; i++) {
@@ -55,7 +55,18 @@ export class MyGridApplicationComponent {
         return results;
     }
 
-    testing(params) {
+    getMinistry(params) {
+        let results = [];
+        if (params.data.leadSupportingDepartments !== null) {
+            for (let i = 0; i < params.data.leadSupportingDepartments.length; i++) {
+                results.push(params.data.leadSupportingDepartments[i].departmentId);
+                results.push(params.data.leadSupportingDepartments[i].role);
+            }
+        }
+        return results;
+    }
+
+    formatTag(params) {
         let results = '';
         if (params.data.tags !== null) {
             for (let i = 0; i < params.data.tags.length; i++) {

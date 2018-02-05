@@ -10,7 +10,7 @@ export class ObjectRendererComponent implements ICellRendererAngularComp {
   private params: any;
   private results = [];
   // results = '';
-  
+
   agInit(params: any): void {
     this.params = params;
     if (this.params.data.Game) {
